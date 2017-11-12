@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vogel.m2_security_nomade_td2_emetteur.AddMessage">
+
+    <EditText
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minLines="6"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:text="Message"
+        android:scrollbars="vertical"/>
+
+    <Button
+        android:id="@+id/envoi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Envoyer"
+        app:layout_constraintTop_toBottomOf="@+id/message"/>
+
+
+</android.support.constraint.ConstraintLayout>
