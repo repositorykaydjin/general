@@ -8,6 +8,7 @@ import android.util.Log;
 import com.example.vogel.m2_security_nomade_td2.bdd.BDDManager;
 import com.example.vogel.m2_security_nomade_td2.util.Entry;
 import com.example.vogel.m2_security_nomade_td2.util.EntryAdapter;
+import com.example.vogel.m2_security_nomade_td2.utils.PkgCert;
 
 import java.util.Calendar;
 
@@ -38,14 +39,17 @@ public class MyBroadcast extends BroadcastReceiver{
         Log.e("onReceive", "ici");
 
         String message = intent.getStringExtra("message");
-        String longitude = intent.getStringExtra("longitude");
-        String latitude = intent.getStringExtra("latitude");
+        Double longitude = intent.getDoubleExtra("longitude", 0);
+        Double latitude = intent.getDoubleExtra("latitude", 0);
+
+        Log.e("onReceive", longitude+"");
+        Log.e("onReceive", latitude+"");
 
         Calendar now = Calendar.getInstance();
         String n = now.get(Calendar.DAY_OF_MONTH) + "/" + (now.get(Calendar.MONTH) + 1) + "/" + now.get(Calendar.YEAR);
 
         //We add the new entry in the database
-        Entry e = datasource.createEntry(message, longitude, latitude);
+        Entry e = datasource.createEntry(message, longitude+"", latitude+"");
 
         //We modify the view
         adapter.add(e);

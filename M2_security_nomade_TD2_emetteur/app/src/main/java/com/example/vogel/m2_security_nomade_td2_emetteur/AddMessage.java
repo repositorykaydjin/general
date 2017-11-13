@@ -1,7 +1,6 @@
 package com.example.vogel.m2_security_nomade_td2_emetteur;
 
 import android.Manifest;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -16,6 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.vogel.m2_security_nomade_td2_emetteur.utils.PkgCert;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
@@ -46,19 +47,26 @@ public class AddMessage extends AppCompatActivity implements LocationListener {
                 3000,   // 3 sec
                 10, this);
 
+        latitude = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLatitude();
+        longitude = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLongitude();
+        Log.e("latitude", latitude+"");
+        Log.e("longitude", longitude+"");
         validate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.e("lancer", "ici");
+                /*String hash_app = PkgCert.hash(getApplicationContext(),
+                        "com.example.vogel.m2_security_nomade_td2_emetteur");
+                Log.e("hash", hash_app);*/
+
                 Intent intent = new Intent();
                 intent.setAction("com.example.vogel.m2_security_nomade_td2_emetteur");
-                intent.putExtra("message", message.toString()+"");
-                intent.putExtra("longitude", longitude+"");
-                intent.putExtra("latitude", latitude+"");
-                intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-                intent.setComponent(
+                intent.putExtra("message", message.getText().toString()+"");
+                intent.putExtra("longitude", longitude);
+                intent.putExtra("latitude", latitude);
+                /*intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);*/
+                /*intent.setComponent(
                         new ComponentName("com.example.vogel.m2_security_nomade_td2",
-                                "com.example.vogel.m2_security_nomade_td2.MyBroadcast2")
-                );
+                                "com.example.vogel.m2_security_nomade_td2.activities.MyBroadcast")
+                );*/
                 sendBroadcast(intent, Manifest.permission.ACCESS_FINE_LOCATION);
             }
         });
@@ -68,6 +76,8 @@ public class AddMessage extends AppCompatActivity implements LocationListener {
     public void onLocationChanged(Location location) {
         latitude = location.getLatitude();
         longitude = location.getLongitude();
+        Log.e("latitude", latitude+"");
+        Log.e("longitude", longitude+"");
     }
 
     @Override

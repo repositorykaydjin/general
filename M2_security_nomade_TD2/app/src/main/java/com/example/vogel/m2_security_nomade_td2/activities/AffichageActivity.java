@@ -19,6 +19,8 @@ import com.example.vogel.m2_security_nomade_td2.R;
 import com.example.vogel.m2_security_nomade_td2.bdd.BDDManager;
 import com.example.vogel.m2_security_nomade_td2.util.Entry;
 import com.example.vogel.m2_security_nomade_td2.util.EntryAdapter;
+import com.example.vogel.m2_security_nomade_td2.utils.PkgCert;
+
 import java.util.List;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -38,7 +40,11 @@ public class AffichageActivity extends AppCompatActivity implements LocationList
         setSupportActionBar(toolbar);
         //We used the database to get all existing entries.
         datasource = new BDDManager(this);
+        //Mode test
+        datasource.allRemove();
+
         datasource.open();
+
         List<Entry> entries = datasource.getAllEntry();
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -54,9 +60,13 @@ public class AffichageActivity extends AppCompatActivity implements LocationList
         mListView.setAdapter(adapter);
 
         Log.e("onCreation", "ici");
+        /*String hash_app = PkgCert.hash(getApplicationContext(),
+                "com.example.vogel.m2_security_nomade_td2_emetteur");
+        Log.e("hash", hash_app);*/
+
         MyBroadcast br = new MyBroadcast(datasource, adapter);
 
-        IntentFilter filter = new IntentFilter("ENVOI_MESSAGE");
+        IntentFilter filter = new IntentFilter("com.example.vogel.m2_security_nomade_td2_emetteur");
         registerReceiver(br, filter, Manifest.permission.ACCESS_FINE_LOCATION, null );
     }
 

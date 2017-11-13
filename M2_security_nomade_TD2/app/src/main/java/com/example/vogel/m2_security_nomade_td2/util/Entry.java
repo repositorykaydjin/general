@@ -11,6 +11,7 @@ public class Entry{
     private String latitude;
 
     public Entry(){}
+
     public Entry(String message, String longitude, String latitude) {
         this.message = message;
         this.longitude = longitude;

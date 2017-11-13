@@ -143,7 +143,7 @@ public class BDDManager {
         entry.setId((int)cursor.getLong(BDDHelper.LocationTable.NUM_ID_COLUMN));
         entry.setMessage(cursor.getString(BDDHelper.LocationTable.NUM_MESSAGE_COLUMN));
         entry.setLongitude(cursor.getString(BDDHelper.LocationTable.NUM_LONGITUDE_COLUMN));
-        entry.setLatitude(cursor.getString(BDDHelper.LocationTable.NUM_MESSAGE_COLUMN));
+        entry.setLatitude(cursor.getString(BDDHelper.LocationTable.NUM_LATITUDE_COLUMN));
         return entry;
     }
 

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">M2_security_nomade_TD2_emetteur</string>
+    <string name="title_activity_splash">SplashActivity</string>
 </resources>

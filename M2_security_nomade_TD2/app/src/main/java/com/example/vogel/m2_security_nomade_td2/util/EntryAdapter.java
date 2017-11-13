@@ -43,7 +43,7 @@ public class EntryAdapter extends ArrayAdapter<Entry> {
         //il ne reste plus qu'à remplir notre vue
         viewHolder.message.setText(entry.getMessage());
         viewHolder.longitude.setText(entry.getLongitude());
-        viewHolder.longitude.setText(entry.getLatitude());
+        viewHolder.latitude.setText(entry.getLatitude());
        // viewHolder.avatar.setImageDrawable(new ColorDrawable(tweet.getColor()));
 
         return convertView;
